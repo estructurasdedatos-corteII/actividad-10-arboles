@@ -1,6 +1,7 @@
 /**
- * Clase Nodo que representa cada elemento del árbol.
- * COMPONENTE: Puede ser Raíz, Nodo Interno o Hoja.
+ * Clase que representa un Nodo del árbol.
+ * - Padre: El nodo que precede a este.
+ * - Hijo: Nodos que dependen de este (izq/der).
  */
 public class Nodo {
     int valor; // Dato almacenado

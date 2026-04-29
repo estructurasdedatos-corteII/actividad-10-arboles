@@ -1,67 +1,29 @@
 public class ArbolBinario {
-    Nodo raiz; // Componente: Raíz del árbol
+    Nodo raiz; // Punto de origen Raiz
 
     public ArbolBinario() {
-        this.raiz = null;
-    }
-    public void insertar(int valor) {
-        raiz = insertarRecursivo(raiz, valor);
+        raiz = null;
     }
 
-    private Nodo insertarRecursivo(Nodo actual, int valor) {
-        if (actual == null) {
-            return new Nodo(valor); 
-        }
-        if (valor < actual.valor) {
-            actual.izquierdo = insertarRecursivo(actual.izquierdo, valor);
-        } else if (valor > actual.valor) {
-            actual.derecho = insertarRecursivo(actual.derecho, valor);
-        }
-        return actual;
-    }
- // Recorrido Inorden
-    public void recorrerInorden(Nodo nodo) {
-        if (nodo != null) {
-            recorrerInorden(nodo.izquierdo);
-            System.out.print(nodo.valor + " ");
-            recorrerInorden(nodo.derecho);
-        }
-    }
-
-    // Recorrido Preorden
-    public void recorrerPreorden(Nodo nodo) {
-        if (nodo != null) {
-            System.out.print(nodo.valor + " ");
-            recorrerPreorden(nodo.izquierdo);
-            recorrerPreorden(nodo.derecho);
-        }
-    }
-    // Recorrido Postorden
-    public void recorrerPostorden(Nodo nodo) {
-        if (nodo != null) {
-            recorrerPostorden(nodo.izquierdo);
-            recorrerPostorden(nodo.derecho);
-            System.out.print(nodo.valor + " ");
-        }
-    }
-     // Método 1: Altura del árbol
-    public int getAltura() {
-        return calcularAltura(raiz);
-    }
-
-    private int calcularAltura(Nodo nodo) {
-        if (nodo == null) return -1; 
-        return 1 + Math.max(calcularAltura(nodo.izquierdo), calcularAltura(nodo.derecho));
-    }
-
-    // Método 2: Conteo de Hojas
-    public int contarHojas() {
-        return calcularHojas(raiz);
-    }
-
-    private int calcularHojas(Nodo nodo) {
+    // MÉTRICA: Obtener altura del arbol
+    public int getAltura(Nodo nodo) {
         if (nodo == null) return 0;
-        if (nodo.izquierdo == null && nodo.derecho == null) return 1;
-        return calcularHojas(nodo.izquierdo) + calcularHojas(nodo.derecho);
+        return 1 + Math.max(getAltura(nodo.izquierdo), getAltura(nodo.derecho));
+    }
+
+    // MÉTRICA: Contar hojas Nodos 
+    public int contarHojas(Nodo nodo) {
+        if (nodo == null) return 0;
+        if (nodo.esHoja()) return 1;
+        return contarHojas(nodo.izquierdo) + contarHojas(nodo.derecho);
+    }
+
+    // REPRESENTACIÓN GRÁFICA Impresión jerárquica ASCII
+    public void imprimirArbol(Nodo nodo, String prefijo, boolean esIzquierdo) {
+        if (nodo != null) {
+            System.out.println(prefijo + (esIzquierdo ? "├── " : "└── ") + nodo.valor);
+            imprimirArbol(nodo.izquierdo, prefijo + (esIzquierdo ? "│   " : "    "), true);
+            imprimirArbol(nodo.derecho, prefijo + (esIzquierdo ? "│   " : "    "), false);
+        }
     }
 }

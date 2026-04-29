@@ -1,7 +1,12 @@
 public class maen {
 public static void main(String[] args) {
         ArbolBinario arbol = new ArbolBinario();
-         // Inserción ordenada según las reglas del ABB
+          /* 
+           INSERCIÓN: Construcción del árbol 
+           Raíz: 50
+           Hijos de 50: 30 (izq) y 70 (der) -> Hermanos entre sí.
+        */
+       
         arbol.insertar(50);
         arbol.insertar(30);
         arbol.insertar(70);
@@ -9,6 +14,10 @@ public static void main(String[] args) {
         arbol.insertar(40);
         arbol.insertar(60);
         arbol.insertar(80);
+
+
+        System.out.println("--- REPRESENTACIÓN JERÁRQUICA DEL ÁRBOL ---");
+        arbol.imprimirArbol(arbol.raiz, "", false);
 
     
         System.out.println("\n=== MÉTRICAS Y TERMINOLOGÍA ===");
