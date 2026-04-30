@@ -1,16 +1,13 @@
 /**
- * Clase que representa un Nodo del árbol.
- * - Padre: El nodo que precede a este.
- * - Hijo: Nodos que dependen de este (izq/der).
+ * Clase que representa el componente básico del árbol.
+ * logiaca Nodo Interno (si tiene hijos) o Hoja (si no los tiene).
  */
 public class Nodo {
-    int valor; // Dato almacenado
-    Nodo izquierdo; // RELACIÓN: Referencia al Hijo Izquierdo
-    Nodo derecho;   // RELACIÓN: Referencia al Hijo Derecho
+    int valor; // Dato del nodo
+    Nodo izquierdo, derecho; // Referencias a hijos (Relación: Padre -> Hijo)
 
-    public Nodo(int valor) {
-        this.valor = valor;
-        this.izquierdo = null;
-        this.derecho = null;
+    public Nodo(int item) {
+        valor = item;
+        izquierdo = derecho = null;
     }
 }
